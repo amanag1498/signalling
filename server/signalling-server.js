@@ -253,7 +253,12 @@ socket.on("blockUser", (config) => {
 				console.log('Connected to the SQL database!');
 			  });
 			
-			const endTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+			const now = new Date();
+// Convert current time to UTC +0
+const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+// Add 5 hours and 30 minutes for IST
+const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+const endTime = ist.toISOString().slice(0, 19).replace('T', ' ');
 	        updatedChannelName = channel.replace(socketHostName,'');
 			console.log('channel name is' +updatedChannelName);
 			const sql = 'UPDATE rooms SET ended_at = ? WHERE room_id = ?';
