@@ -115,7 +115,7 @@ socket.on("blockUser", (config) => {
 		const channel = socketHostName +config.channel;
 		const user_name = config.user_name;
 		const gift_url = config.gift_url;
-		const gift_name;
+		const gift_name = config.gift_name;
 	    console.log(user_name);
 		console.log(gift_url);
 		// Notify all users in the channel
