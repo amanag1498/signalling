@@ -122,7 +122,8 @@ socket.on("blockUser", (config) => {
 		
 			channels[channel][id].emit("giftReceivedByUser", {
 				user_name :user_name,
-				gift_url:gift_url
+				gift_url:gift_url,
+				gift_name:gift_name
 			});
 		}
 		// socket.emit("giftReceivedByUser", {
