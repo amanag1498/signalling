@@ -110,7 +110,26 @@ socket.on("blockUser", (config) => {
 		}
 		socket.emit("videoSharingPeersUpdate", videoSharingPeers[channel]);
 	});
+        socket.on("entryReceived", (config) => {
+		const channel = socketHostName +config.channel;
 
+	
+		const entry_url = config.entry_url;
+	        const entry_time = config.entry_time;
+	        console.log(config.entry_url);
+		// Notify all users in the channel
+		for (const id in channels[channel]) {
+		channels[channel][id].emit("entryReceivedByUser", {
+				entry_url:entry_url,
+			        entry_time:entry_time,   
+			});
+		}
+	 socket.emit("entryReceivedByUser", {
+		 	entry_url:entry_url,
+		  entry_time:entry_time,
+ });
+		
+	});
 	socket.on("giftReceived", (config) => {
 		const channel = socketHostName +config.channel;
 		const user_name = config.user_name;
