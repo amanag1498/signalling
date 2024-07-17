@@ -135,15 +135,15 @@ socket.on("blockUser", (config) => {
 		const user_name = config.user_name;
 		const gift_url = config.gift_url;
 		const gift_name = config.gift_name;
-	    console.log(user_name);
-		console.log(gift_url);
+		const audio = config.audio;
 		// Notify all users in the channel
 		for (const id in channels[channel]) {
 		
 			channels[channel][id].emit("giftReceivedByUser", {
 				user_name :user_name,
 				gift_url:gift_url,
-				gift_name:gift_name
+				gift_name:gift_name,
+				audio:audio
 			});
 		}
 		// socket.emit("giftReceivedByUser", {
