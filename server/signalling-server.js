@@ -262,38 +262,38 @@ socket.on("blockUser", (config) => {
 		// Socket not in channel
 		if (!(channel in socket.channels)) return;
 
-		if (hostIDs[channel] === socket.id) {
-			const db = mysql.createConnection({
-				host: '31.170.161.103', // Replace with your host
-				user: 'u373538896_admin', // Replace with your database user
-				password: 'T389mqzh8p@123', // Replace with your password
-				database: 'u373538896_gdlive' // Replace with your database name
-			  });
-			db.connect((err) => {
-				if (err) throw err;
-				console.log('Connected to the SQL database!');
-			  });
+// 		if (hostIDs[channel] === socket.id) {
+// 			const db = mysql.createConnection({
+// 				host: '31.170.161.103', // Replace with your host
+// 				user: 'u373538896_admin', // Replace with your database user
+// 				password: 'T389mqzh8p@123', // Replace with your password
+// 				database: 'u373538896_gdlive' // Replace with your database name
+// 			  });
+// 			db.connect((err) => {
+// 				if (err) throw err;
+// 				console.log('Connected to the SQL database!');
+// 			  });
 			
-			const now = new Date();
-// Convert current time to UTC +0
-const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-// Add 5 hours and 30 minutes for IST
-const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
-const endTime = ist.toISOString().slice(0, 19).replace('T', ' ');
-	        updatedChannelName = channel.replace(socketHostName,'');
-			console.log('channel name is' +updatedChannelName);
-			const sql = 'UPDATE rooms SET ended_at = ? WHERE room_id = ?';
-			db.query(sql, [endTime, updatedChannelName], (err, result) => {
-				if (err) throw err;
-				console.log(`End time recorded for host of channel ${updatedChannelName}`);
-			});
-			db.on('error', function(err) {
-				console.log('Database error: ', err);
-				if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-				  // Reconnect logic or error handling
-				}
-			  });
-		}
+// 			const now = new Date();
+// // Convert current time to UTC +0
+// const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+// // Add 5 hours and 30 minutes for IST
+// const ist = new Date(utc.getTime() + (5.5 * 60 * 60 * 1000));
+// const endTime = ist.toISOString().slice(0, 19).replace('T', ' ');
+// 	        updatedChannelName = channel.replace(socketHostName,'');
+// 			console.log('channel name is' +updatedChannelName);
+// 			const sql = 'UPDATE rooms SET ended_at = ? WHERE room_id = ?';
+// 			db.query(sql, [endTime, updatedChannelName], (err, result) => {
+// 				if (err) throw err;
+// 				console.log(`End time recorded for host of channel ${updatedChannelName}`);
+// 			});
+// 			db.on('error', function(err) {
+// 				console.log('Database error: ', err);
+// 				if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+// 				  // Reconnect logic or error handling
+// 				}
+// 			  });
+// 		}
 	
 
 
